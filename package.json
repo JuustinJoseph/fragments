@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/JuustinJoseph/fragments.git"
   },
-  "author": "REPLACE WITH YOUR NAME",
+  "author": "Justin Joseph",
   "license": "UNLICENSED",
   "devDependencies": {
     "@eslint/js": "^9.2.0",
