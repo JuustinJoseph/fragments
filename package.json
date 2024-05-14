@@ -11,5 +11,8 @@
     "url": "git+https://github.com/REPLACE-THIS-WITH-YOUR-GITHUB-USERNAME/fragments.git"
   },
   "author": "REPLACE WITH YOUR NAME",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "prettier": "3.2.5"
+  }
 }
