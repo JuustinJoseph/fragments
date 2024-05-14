@@ -5,7 +5,7 @@
   "description": "Fragments back-end API",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "lint": "eslint --config eslint.config.mjs \"./src/**/*.js\""
+    "lint": "eslint --config eslint.config.mjs \"./src/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
     "eslint": "^9.2.0",
     "globals": "^15.2.0",
     "prettier": "3.2.5"
+  },
+  "dependencies": {
+    "pino": "^9.1.0",
+    "pino-http": "^10.1.0",
+    "pino-pretty": "^11.0.0"
   }
 }
