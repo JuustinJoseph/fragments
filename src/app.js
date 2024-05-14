@@ -37,10 +37,13 @@ app.get('/', (req, res) => {
   // See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching#controlling_caching
   res.setHeader('Cache-Control', 'no-cache');
 
+  if (process.env.LOG_LEVEL === 'debug') {
+    console.log('Environment variables:', process.env);
+  }
   // Send a 200 'OK' response with info about our repo
   res.status(200).json({
     status: 'ok',
-    author: 'Justin Joseph',
+    author,
     // TODO: change this to use your GitHub username!
     githubUrl: 'https://github.com/JuustinJoseph/fragments',
     version,
