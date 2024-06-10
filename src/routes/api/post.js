@@ -13,14 +13,10 @@ module.exports = async (req, res) => {
         type: req.get('Content-type'),
         size: req.body.length,
       });
-      // save the binary data of the fragment
       await fragment.setData(req.body);
-      // save the fragment
       await fragment.save();
-
-      // set the location of the fragment and send back the response with the fragment data
       res
-        .set('location', `${api}/v1/fragments/${fragment.id}`)
+        .set('location', `http://${req.headers.host}/v1/fragments/${fragment.id}`)
         .status(201)
         .send(createSuccessResponse({ fragment }));
       logger.info({ fragment: fragment }, `Fragment have been posted successfully`);
