@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/routes/api/post.js</title>
+    <title>Code coverage report for src/routes/api/get_data.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/routes/api</a> post.js</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/routes/api</a> get_data.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">69.56% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/14</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.85% </span>
+                <span class="strong">69.56% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/14</span>
+                <span class='fraction'>16/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,66 +94,72 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { Fragment } = require('../../model/fragment');
-const { createSuccessResponse, createErrorResponse } = require('../../response');
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { createErrorResponse } = require('../../response');
+const { Fragment } = require('../../model/fragment');
 const logger = require('../../logger');
-const api = process.env.API_URL || 'http://localhost:8080';
+const path = require('path');
 &nbsp;
 module.exports = async (req, res) =&gt; {
-  if (!Fragment.isSupportedType(req.get('Content-Type'))) {
-    res.status(415).json(createErrorResponse(415, 'Content-Type is not supported'));
-  } else {
-    try {
-      const fragment = new Fragment({
-        ownerId: req.user,
-        type: req.get('Content-type'),
-        size: req.body.length,
-      });
-      // save the binary data of the fragment
-      await fragment.setData(req.body);
-      // save the fragment
-      await fragment.save();
+  const query = path.parse(req.params.id);
+  let ext = query.ext.split('.').pop();
+  try {
+    var fragment = await Fragment.byId(req.user, query.name);
+    let data = await fragment.getData();
+    ext = fragment.extConvert(ext);
 &nbsp;
-      // set the location of the fragment and send back the response with the fragment data
-      res
-        .set('location', `${api}/v1/fragments/${fragment.id}`)
-        .status(201)
-        .send(createSuccessResponse({ fragment }));
-      logger.info({ fragment: fragment }, `Fragment have been posted successfully`);
-    } catch (err) {
-<span class="cstat-no" title="statement not covered" >      res.status(404).json(createErrorResponse(404, 'Unable to POST the fragment'));</span>
+    if (query.ext == '' || <span class="branch-1 cbranch-no" title="branch not covered" >fragment.type.endsWith(ext))</span> {
+      res.setHeader('Content-Type', fragment.type);
+      res.status(200).send(Buffer.from(data));
+      logger.debug(data, fragment.type);
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        if (fragment.isText || fragment.type == 'application/json') {</span>
+          var result = <span class="cstat-no" title="statement not covered" >await fragment.textConvert(ext);</span>
+<span class="cstat-no" title="statement not covered" >          res.setHeader('Content-Type', `text/${ext}`);</span>
+<span class="cstat-no" title="statement not covered" >          res.status(200).send(Buffer.from(result));</span>
+<span class="cstat-no" title="statement not covered" >          logger.debug(ext, result);</span>
+        }
+      } catch (err) {
+<span class="cstat-no" title="statement not covered" >        res.status(415).json(createErrorResponse(415, `Unsupported type conversion`));</span>
+      }
     }
+  } catch (error) {
+    res.status(404).json(createErrorResponse(404, error));
   }
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -163,7 +169,7 @@ module.exports = async (req, res) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-10T21:13:59.470Z
+                at 2024-06-10T20:48:00.214Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

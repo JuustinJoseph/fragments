@@ -1,30 +1,31 @@
 const { Fragment } = require('../../model/fragment');
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const logger = require('../../logger');
+const api = process.env.API_URL || 'http://localhost:8080';
 
 module.exports = async (req, res) => {
-  const scheme = req.protocol;
-  const hostname = req.get('host');
-  const path = req.originalUrl;
-  const apiURL = `${scheme}://${hostname}${path}`;
+  if (!Fragment.isSupportedType(req.get('Content-Type'))) {
+    res.status(415).json(createErrorResponse(415, 'Content-Type is not supported'));
+  } else {
+    try {
+      const fragment = new Fragment({
+        ownerId: req.user,
+        type: req.get('Content-type'),
+        size: req.body.length,
+      });
+      // save the binary data of the fragment
+      await fragment.setData(req.body);
+      // save the fragment
+      await fragment.save();
 
-  if (!Buffer.isBuffer(req.body) || !Fragment.isSupportedType(req.get('Content-Type'))) {
-    return res.status(415).json(createErrorResponse(415, 'Unsupported Media Type'));
-  }
-
-  try {
-    logger.info('New fragment with data: ' + req.body);
-    const type = req.headers['content-type'];
-    const fragment = new Fragment({ ownerId: req.user, type, size: Buffer.byteLength(req.body) });
-
-    logger.info('Saving the fetched data');
-    await fragment.setData(req.body);
-    await fragment.save();
-
-    logger.debug('Setting successful response');
-    res.setHeader('Location', `${apiURL}/${fragment.id}`);
-    res.status(201).json(createSuccessResponse({ fragment }));
-  } catch (error) {
-    res.status(404).json(createErrorResponse(404, error));
+      // set the location of the fragment and send back the response with the fragment data
+      res
+        .set('location', `${api}/v1/fragments/${fragment.id}`)
+        .status(201)
+        .send(createSuccessResponse({ fragment }));
+      logger.info({ fragment: fragment }, `Fragment have been posted successfully`);
+    } catch (err) {
+      res.status(404).json(createErrorResponse(404, 'Unable to POST the fragment'));
+    }
   }
 };

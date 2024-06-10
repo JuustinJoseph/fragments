@@ -93,26 +93,6 @@ class Fragment {
     return this.mimeType.startsWith('text/');
   }
 
-  get formats() {
-    let result = [];
-    if (
-      this.type.includes('image/png') ||
-      this.type.includes('image/jpeg') ||
-      this.type.includes('image/webp')
-    ) {
-      result = ['image/png', 'image/jpeg', 'image/webp'];
-    } else if (this.type.includes('text/plain')) {
-      result = ['text/plain'];
-    } else if (this.type.includes('text/markdown')) {
-      result = ['text/plain', 'text/html', 'text/markdown'];
-    } else if (this.type.includes('text/html')) {
-      result = ['text/plain', 'text/html'];
-    } else if (this.type.includes('application/json')) {
-      result = ['application/json', 'text/plain'];
-    }
-    return result;
-  }
-
   static isSupportedType(value) {
     return supportedTypes.includes(contentType.parse(value).type);
   }
