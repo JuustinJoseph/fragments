@@ -1,7 +1,6 @@
 const { createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 const logger = require('../../logger');
-const path = require('path');
 
 module.exports = async (req, res) => {
   try {

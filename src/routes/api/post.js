@@ -1,7 +1,6 @@
 const { Fragment } = require('../../model/fragment');
 const { createSuccessResponse, createErrorResponse } = require('../../response');
 const logger = require('../../logger');
-const api = process.env.API_URL || 'http://localhost:8080';
 
 module.exports = async (req, res) => {
   if (!Fragment.isSupportedType(req.get('Content-Type'))) {
@@ -21,7 +20,7 @@ module.exports = async (req, res) => {
         .send(createSuccessResponse({ fragment }));
       logger.info({ fragment: fragment }, `Fragment have been posted successfully`);
     } catch (err) {
-      res.status(404).json(createErrorResponse(404, 'Unable to POST the fragment'));
+      res.status(404).json(createErrorResponse(404, 'Unable to POST the fragment', { err }));
     }
   }
 };
