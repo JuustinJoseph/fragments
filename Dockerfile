@@ -19,13 +19,13 @@
 
 
 # Use node version 18.13.0
-FROM node:21.6.1
+FROM node:22.3@sha256:b98ec1c96103fbe1a9e449b3854bbc0a0ed1c5936882ae0939d4c3a771265b4b as build
 
 LABEL maintainer="Justin Joseph jjoseph77@myseneca.ca"
 LABEL description="Fragments node.js microservice"
 
-# We default to use port 8080 in our service
-ENV PORT=8080
+# # We default to use port 8080 in our service
+# ENV PORT=8080
 
 # Reduce npm spam when installing within Docker
 # https://docs.npmjs.com/cli/v8/using-npm/config#loglevel
@@ -43,14 +43,27 @@ WORKDIR /app
 # that `app` is a directory and not a file.
 COPY package*.json /app/
 
-# Install node dependencies defined in package-lock.json
-RUN npm install
+# # Install node dependencies defined in package-lock.json
+# RUN npm install
 
 # Copy src/
 COPY ./src ./src
+
+RUN npm ci --only=production
+
+########################################################################
+
+FROM node:22.3-alpine3.19@sha256:9af472b2578996eb3d6affbcb82fdee6f086da2c43121e75038a4a70317f784f AS production
+
+COPY --from=build /app /app
+
+WORKDIR /app
 
 # Copy our HTPASSWD file
 COPY ./tests/.htpasswd ./tests/.htpasswd
 
 # Run the server
 CMD npm start
+
+# We run our service on port 8080
+EXPOSE 8080
