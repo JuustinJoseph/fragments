@@ -17,6 +17,8 @@
 # To run the debug script (The debug script allows you to connect a debugger): `npm run debug`
 
 
+########################################################################
+# Stage-1 - Build 
 
 # Use node version 18.13.0
 FROM node:22.3@sha256:b98ec1c96103fbe1a9e449b3854bbc0a0ed1c5936882ae0939d4c3a771265b4b as build
@@ -51,7 +53,10 @@ COPY ./src ./src
 # Copy our HTPASSWD file
 COPY ./tests/.htpasswd ./tests/.htpasswd
 
+
+
 ########################################################################
+# Stage-2 Production
 
 FROM node:22.3-alpine3.19@sha256:9af472b2578996eb3d6affbcb82fdee6f086da2c43121e75038a4a70317f784f AS production
 
