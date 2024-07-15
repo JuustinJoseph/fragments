@@ -2,6 +2,8 @@
 const { randomUUID } = require('crypto');
 const contentType = require('content-type');
 const validateKey = (key) => typeof key === 'string';
+const MarkdownIt = require('markdown-it'),
+  md = new MarkdownIt();
 
 // Import database functions
 const {
@@ -90,11 +92,41 @@ class Fragment {
   }
 
   get isText() {
-    return this.mimeType.startsWith('text/');
+    return this.mimeType.startsWith('text');
   }
 
   static isSupportedType(value) {
-    return supportedTypes.includes(contentType.parse(value).type);
+    const { type } = contentType.parse(value);
+    // const supportedTypes = ['text/plain', 'text/html'];
+    return supportedTypes.includes(type) ? true : false;
+  }
+
+  async textConvert(value) {
+    var result, data;
+    data = await this.getData();
+    if (value == 'html') {
+      if (this.type.endsWith('markdown')) {
+        result = md.render(data.toString());
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Returns string of newly changed type name by changing extension
+   * @param {string} value extension to be changed
+   * @returns {string} changes type name
+   */
+  extConvert(value) {
+    var ext;
+    if (value == 'txt') {
+      ext = 'plain';
+    } else if (value == 'md') {
+      ext = 'markdown';
+    } else {
+      ext = value;
+    }
+    return ext;
   }
 }
 

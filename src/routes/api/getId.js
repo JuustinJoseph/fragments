@@ -1,21 +1,36 @@
 const { createErrorResponse } = require('../../response');
 const { Fragment } = require('../../model/fragment');
 const logger = require('../../logger');
+const path = require('path');
 
 module.exports = async (req, res) => {
+  const query = path.parse(req.params.id);
+  let extension = query.ext.split('.').pop();
   try {
-    var fragment = await Fragment.byId(req.user, req.params['id']);
-    let data = await fragment.getData();
-    if (fragment.isText) {
-      data = data.toString();
-    }
+    let fragmentMetadata = await Fragment.byId(req.user, query.name);
+    let fragment = await fragmentMetadata.getData();
+    extension = fragmentMetadata.extConvert(extension);
 
-    res.status(200).set({ 'Content-Type': fragment.mimeType }).send(data);
+    if (query.ext == '' || fragmentMetadata.type.endsWith(extension)) {
+      res.setHeader('Content-Type', fragmentMetadata.type);
+      res.status(200).send(Buffer.from(fragment));
+      logger.info(
+        { fragmentData: fragment, contentType: fragmentMetadata.type },
+        `Fragment data retrieved successfully!`
+      );
+    } else {
+      try {
+        if (fragmentMetadata.isText) {
+          let result = await fragmentMetadata.textConvert(extension);
+          res.setHeader('Content-Type', `text/${extension}`);
+          res.status(200).send(Buffer.from(result));
+          logger.info({ targetType: extension }, `Successful conversion to ${extension}`);
+        }
+      } catch (err) {
+        res.status(415).json(createErrorResponse(415, `Unknown/Unsupported type`));
+      }
+    }
   } catch (err) {
-    res.status(404).json(createErrorResponse(404, 'fragment does not exist'));
-    logger.warn(
-      { fragment, errorMessage: err.message },
-      'request to non-existent fragment was made'
-    );
+    res.status(404).json(createErrorResponse(404, `Unknown Fragment`));
   }
 };

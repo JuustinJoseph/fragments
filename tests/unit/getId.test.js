@@ -24,6 +24,20 @@ describe('GET /v1/fragments', () => {
       .get('/v1/fragments/invalidID')
       .auth('user1@email.com', 'password1');
     expect(res.statusCode).toBe(404);
-    expect(res.body.error.message).toBe('fragment does not exist');
+    expect(res.body.error.message).toBe('Unknown Fragment');
+  });
+
+  test('successful conversion of markdown(.md) extension to html', async () => {
+    const req = await request(app)
+      .post('/v1/fragments/')
+      .auth('user1@email.com', 'password1')
+      .send('# This is a markdown type fragment')
+      .set('Content-type', 'text/markdown');
+
+    const res = await request(app)
+      .get(`/v1/fragments/${req.body.fragment.id}.html`)
+      .auth('user1@email.com', 'password1');
+    expect(res.statusCode).toBe(200);
+    expect(res.text).toEqual('<h1>This is a markdown type fragment</h1>\n');
   });
 });
