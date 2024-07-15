@@ -27,10 +27,10 @@ module.exports = async (req, res) => {
           logger.info({ targetType: extension }, `Successful conversion to ${extension}`);
         }
       } catch (err) {
-        res.status(415).json(createErrorResponse(415, `Unknown/Unsupported type`));
+        res.status(415).json(createErrorResponse(415, `Unknown/Unsupported type`, err));
       }
     }
   } catch (err) {
-    res.status(404).json(createErrorResponse(404, `Unknown Fragment`));
+    res.status(404).json(createErrorResponse(404, `Unknown Fragment`, err));
   }
 };
