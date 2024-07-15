@@ -1,8 +1,6 @@
 const request = require('supertest');
-const hash = require('../../src/hash');
 
 const app = require('../../src/app');
-const { readFragmentData } = require('../../src/model/data');
 
 describe('GET v1/fragments/:id/info', () => {
   test('Get fragments metadata by valid user ID', async () => {

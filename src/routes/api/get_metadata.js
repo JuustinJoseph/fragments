@@ -10,6 +10,8 @@ module.exports = async (req, res) => {
     res.status(200).send(createSuccessResponse({ fragment: fragment }));
     logger.info({ fragmentInfo: fragment }, 'Fragment meta data has been successfully retrieved!');
   } catch (err) {
-    res.status(404).send(createErrorResponse(404, 'Fragment meta data with that ID not found'));
+    res
+      .status(404)
+      .send(createErrorResponse(404, 'Fragment meta data with that ID not found', err));
   }
 };
