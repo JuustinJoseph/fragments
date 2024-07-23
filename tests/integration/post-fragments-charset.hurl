@@ -24,7 +24,8 @@ jsonpath "$.fragment.size" == 19
 url: header "Location"
 
 GET {{url}}
-Authorization: Basic dXNlcjFAZW1haWwuY29tOnBhc3N3b3JkMQ==
+[BasicAuth]
+user1@email.com:password1
 
 HTTP/1.1 200
 Content-Type: text/plain; charset=utf-8
