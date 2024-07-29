@@ -8,6 +8,6 @@ module.exports = async (req, res) => {
     res.status(200).send(createSuccessResponse(200, 'Fragment successfully deleted!'));
     logger.info('Successfully deleted fragment');
   } catch (err) {
-    res.status(404).send(createErrorResponse(404, 'Fragment not found'));
+    res.status(404).send(createErrorResponse(404, 'Fragment not found', err));
   }
 };
