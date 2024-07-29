@@ -8,7 +8,7 @@ user1@email.com:passwordtesting
 # Body of the request goes in ```...``` when it's a string
 ```This is a fragment!```
 
-# 1. We expect to get back an HTTP 201
+# 1. We expect to get back an HTTP 401
 HTTP/1.1 401
 
 [Asserts]
