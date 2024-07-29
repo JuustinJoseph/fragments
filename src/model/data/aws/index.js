@@ -1,10 +1,10 @@
 const MemoryDB = require('../memory/memory-db');
+const logger = require('../../../logger');
 
 const s3Client = require('./s3Client');
 const { PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 
 // Create two in-memory databases: one for fragment metadata and the other for raw data
-const data = new MemoryDB();
 const metadata = new MemoryDB();
 
 // Write a fragment's metadata to memory db. Returns a Promise
@@ -84,7 +84,7 @@ async function readFragmentData(ownerId, id) {
   } catch (err) {
     const { Bucket, Key } = params;
     logger.error({ err, Bucket, Key }, 'Error streaming fragment data from S3');
-    throw new Error('unable to read fragment data');
+    throw new Error('unable to read fragment data', err.message);
   }
 }
 
