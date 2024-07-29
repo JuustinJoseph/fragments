@@ -1,5 +1,5 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:606838451626:task-definition/fragments-task:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:606838451626:task-definition/fragments-task:2",
   "containerDefinitions": [
     {
       "name": "fragments-container",
@@ -18,8 +18,16 @@
       "essential": true,
       "environment": [
         {
+          "name": "AWS_COGNITO_POOL_ID",
+          "value": "us-east-1_4Bihi2Ive"
+        },
+        {
           "name": "PORT",
-          "value": "80"
+          "value": "8080"
+        },
+        {
+          "name": "AWS_COGNITO_CLIENT_ID",
+          "value": "2mu3kedef0e0k7h5mivm8oof90"
         },
         {
           "name": "LOG_LEVEL",
@@ -51,7 +59,7 @@
   "taskRoleArn": "arn:aws:iam::606838451626:role/LabRole",
   "executionRoleArn": "arn:aws:iam::606838451626:role/LabRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 2,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -89,7 +97,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-07-29T21:53:00.234Z",
+  "registeredAt": "2024-07-29T23:29:53.046Z",
   "registeredBy": "arn:aws:sts::606838451626:assumed-role/voclabs/user3283942=jjoseph77@myseneca.ca",
   "tags": []
 }
