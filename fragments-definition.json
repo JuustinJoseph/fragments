@@ -1,5 +1,5 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:606838451626:task-definition/fragments-task:3",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:606838451626:task-definition/fragments-task1:1",
   "containerDefinitions": [
     {
       "name": "fragments",
@@ -8,7 +8,7 @@
       "memoryReservation": 512,
       "portMappings": [
         {
-          "name": "fragments-container-80-tcp",
+          "name": "fragments-80-tcp",
           "containerPort": 80,
           "hostPort": 80,
           "protocol": "tcp",
@@ -23,15 +23,15 @@
         },
         {
           "name": "PORT",
-          "value": "80"
-        },
-        {
-          "name": "AWS_COGNITO_CLIENT_ID",
-          "value": "2mu3kedef0e0k7h5mivm8oof90"
+          "value": "8080"
         },
         {
           "name": "LOG_LEVEL",
           "value": "debug"
+        },
+        {
+          "name": "AWS_COGNITO_CLIENT_ID",
+          "value": "2mu3kedef0e0k7h5mivm8oof90"
         },
         {
           "name": "HTPASSWD_FILE",
@@ -45,7 +45,7 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/fragments-task",
+          "awslogs-group": "/ecs/fragments-task1",
           "awslogs-create-group": "true",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
@@ -55,11 +55,11 @@
       "systemControls": []
     }
   ],
-  "family": "fragments-task",
+  "family": "fragments-task1",
   "taskRoleArn": "arn:aws:iam::606838451626:role/LabRole",
   "executionRoleArn": "arn:aws:iam::606838451626:role/LabRole",
   "networkMode": "awsvpc",
-  "revision": 3,
+  "revision": 1,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -97,7 +97,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-07-29T23:50:09.818Z",
+  "registeredAt": "2024-07-30T00:21:51.096Z",
   "registeredBy": "arn:aws:sts::606838451626:assumed-role/voclabs/user3283942=jjoseph77@myseneca.ca",
   "tags": []
 }
