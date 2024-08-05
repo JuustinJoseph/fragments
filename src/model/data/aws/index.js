@@ -6,9 +6,6 @@ const { PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aw
 const ddbDocClient = require('./ddbDocClient');
 const { PutCommand, GetCommand, QueryCommand, DeleteCommand } = require('@aws-sdk/lib-dynamodb');
 
-// Create two in-memory databases: one for fragment metadata and the other for raw data
-const metadata = new MemoryDB();
-
 function writeFragment(fragment) {
   // Configure our PUT params, with the name of the table and item (attributes and keys)
   const params = {
