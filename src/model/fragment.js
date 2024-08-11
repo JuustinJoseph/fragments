@@ -2,6 +2,7 @@
 const { randomUUID } = require('crypto');
 const contentType = require('content-type');
 const validateKey = (key) => typeof key === 'string';
+const sharp = require('sharp');
 const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
 
@@ -127,6 +128,25 @@ class Fragment {
       ext = value;
     }
     return ext;
+  }
+
+  async imageConvert(value) {
+    var result, fragmentData;
+    fragmentData = await this.getData();
+
+    if (this.type.startsWith('image')) {
+      if (value == 'gif') {
+        result = sharp(fragmentData).gif();
+      } else if (value == 'jpg' || value == 'jpeg') {
+        result = sharp(fragmentData).jpeg();
+      } else if (value == 'webp') {
+        result = sharp(fragmentData).webp();
+      } else if (value == 'png') {
+        result = sharp(fragmentData).png();
+      }
+    }
+
+    return result.toBuffer();
   }
 }
 
