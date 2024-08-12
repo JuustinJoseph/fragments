@@ -243,7 +243,18 @@ describe('Fragment class', () => {
       expect(() => Fragment.byId('1234', fragment.id)).rejects.toThrow();
     });
   });
-  
+
+  describe('imgConvert', () => {
+    test('imageConvert handles unsupported formats gracefully', async () => {
+      const imageData = Buffer.from('dummy image data');
+      const fragment = new Fragment({
+        ownerId: '1234',
+        type: 'image/png',
+        size: 0,
+      });
+      await fragment.save();
+      await fragment.setData(imageData);
+      await expect(fragment.imageConvert('bmp')).rejects.toThrow();
+    });
+  });
 });
-
-

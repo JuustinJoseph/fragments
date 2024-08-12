@@ -5,6 +5,7 @@ const validateKey = (key) => typeof key === 'string';
 const sharp = require('sharp');
 const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
+const logger = require('../logger');
 
 // Import database functions
 const {
@@ -101,15 +102,24 @@ class Fragment {
     // const supportedTypes = ['text/plain', 'text/html'];
     return supportedTypes.includes(type) ? true : false;
   }
-
   async textConvert(value) {
-    var result, data;
+    let result, data;
     data = await this.getData();
-    if (value == 'html') {
-      if (this.type.endsWith('markdown')) {
-        result = md.render(data.toString());
+
+    try {
+      if (value == 'html') {
+        if (this.type.endsWith('markdown')) {
+          result = md.render(data.toString());
+        } else if (this.type === 'application/json') {
+          let jsonData = JSON.parse(data.toString());
+          result = JSON.stringify(jsonData, null, 2); // Pretty print JSON
+        }
       }
+    } catch (err) {
+      logger.error('Error during text conversion:', err);
+      throw new Error('Failed to convert text data');
     }
+
     return result;
   }
 

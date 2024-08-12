@@ -42,6 +42,7 @@
     "http-auth": "^4.2.0",
     "http-auth-passport": "^1.0.7",
     "hurl": "^0.2.7",
+    "jsdom": "^24.1.1",
     "lodash": "^4.17.21",
     "markdown-it": "^14.1.0",
     "passport": "^0.7.0",
